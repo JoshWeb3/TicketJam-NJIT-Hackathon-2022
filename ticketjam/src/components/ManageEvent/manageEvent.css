@@ -1,0 +1,32 @@
+.boxes {
+    color:white;
+    display:flex;
+    justify-content: center;
+}
+
+.toWhite {
+    color: white;
+    margin-left:40%;
+}
+
+.eventPoster {
+    max-width: 300px;
+    max-height: auto;
+    margin:30px;
+}
+
+.joinUs {
+    color:white;
+    border-radius:60px;
+    border: 1px solid white;
+    margin-left: 45%;
+    padding: 20px;
+    max-width:200px;
+    text-align: center;
+    cursor:pointer;
+  }
+  
+  .joinUs:hover{
+    color:black;
+    background-color: white;
+  }

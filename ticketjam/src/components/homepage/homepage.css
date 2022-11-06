@@ -1,0 +1,219 @@
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: MS Sans Serif, sans-serif;
+  color: white;
+  text-shadow: 3px 3px #000000;
+  text-align: center;
+}
+
+.intro {
+  font-size: 15px;
+
+  letter-spacing: 0.2px;
+  font-family: monospace;
+  text-shadow: 2px 2px #000000;
+  color: white;
+  text-align: center;
+}
+
+.joinUs {
+  color:white;
+  border-radius:60px;
+  border: 1px solid white;
+  margin-left: 45%;
+  padding: 20px;
+  max-width:200px;
+  text-align: center;
+  cursor:pointer;
+}
+
+.joinUs:hover{
+  color:black;
+  background-color: white;
+}
+
+.joinDisc:hover {
+  background-color: #ff3769;
+}
+
+.discIcon {
+  max-width: 10%;
+  max-height: auto;
+  margin-left: 10px;
+}
+
+.introWrapper {
+  border: 2px #ff3769 solid;
+  border-radius: 16px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.kahoot {
+  max-width: 100%;
+  max-height: auto;
+}
+
+.bitcoin {
+  max-width: 20%;
+  max-height: auto;
+}
+
+.vl {
+  margin-left: 50%;
+  border-left: 1px solid white;
+  height: 20px;
+}
+
+.iconSmall {
+  width: 30px;
+  height: 30px;
+}
+
+.DAWgeneral {
+  height: 60px !important;
+}
+
+.textbackground {
+ 
+  background-size: 100%;
+}
+
+.DAWbutton {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 18px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0px 0px 0px 10px;
+  cursor: pointer;
+}
+
+.venmo {
+  display: inline-block;
+  transition: 0.2s;
+  border-radius: 6px;
+  border: 1px solid rgb(255, 55, 105);
+  cursor: pointer;
+  width: 100px;
+  height: 15px;
+  margin: 10px;
+  padding: 10px;
+  
+  background-size: 100%;
+}
+
+.cashapp {
+  display: inline-block;
+  transition: 0.2s;
+  border-radius: 6px;
+  border: 1px solid rgb(255, 55, 105);
+  cursor: pointer;
+  width: 100px;
+  height: 15px;
+  margin: 10px;
+  padding: 10px;
+
+  background-size: 100%;
+  background-repeat: none;
+}
+
+.paypal {
+  display: inline-block;
+  transition: 0.2s;
+  border-radius: 6px;
+  border: 1px solid rgb(255, 55, 105);
+  cursor: pointer;
+  width: 100px;
+  height: 15px;
+  margin: 10px;
+  padding: 10px;
+
+  background-size: 100%;
+}
+
+
+@media screen and (min-width: 1000px) {
+  .intro {
+    font-size: 20px;
+  }
+
+  .introWrapper {
+    max-width: 30%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .joinDisc {
+    max-width: 40%;
+  }
+}
+
+#scroll-container {
+  border: 3px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  color: white;
+}
+
+#scroll-text {
+  /* animation properties */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+
+  -moz-animation: my-animation 10s linear infinite;
+  -webkit-animation: my-animation 10s linear infinite;
+  animation: my-animation 10s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+  from {
+    -moz-transform: translateX(100%);
+  }
+  to {
+    -moz-transform: translateX(-100%);
+  }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+  from {
+    -webkit-transform: translateX(100%);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+  }
+}
+
+@keyframes my-animation {
+  from {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  to {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+.iconSmall {
+  width: 75px;
+  height: 75px;
+}
+.iconTiny {
+  width: 30px;
+  height: 30px;
+}
+
+.fontBigger {
+  font-size: 20px;
+}

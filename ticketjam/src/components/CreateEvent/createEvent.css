@@ -1,0 +1,23 @@
+.toWhite {
+  color: white;
+  margin-left:40%;
+}
+
+.menuItems {
+  transition: 0.3s;
+
+  border: 1px solid rgb(255, 55, 105);
+  border-radius: 6px;
+  padding: 10px;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.menuItems:hover {
+  background-color: rgb(255, 55, 105);
+}
+
+.inputs {
+  background-color: white;
+  
+}

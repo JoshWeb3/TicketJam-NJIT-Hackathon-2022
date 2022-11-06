@@ -1,0 +1,43 @@
+.links {
+  
+  color: rgb(161, 142, 142);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.socialMedia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 27%;
+  margin-right: 27%;
+}
+
+.linkButton {
+  max-width: 30px;
+  max-height: 30px;
+  padding: 10px;
+}
+
+.engageButton {
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px;
+  background: #ffffff;
+
+  border-radius: 6px;
+  color: rgb(0, 0, 0);
+  font-family: monospace;
+  text-decoration: none;
+  max-height: 20px;
+  max-width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.engageButton:hover {
+  background: #ff3769;
+}
