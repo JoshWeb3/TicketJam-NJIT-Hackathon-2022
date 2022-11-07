@@ -6,13 +6,29 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 //make multisig
 contract Manager {
     
-
+    //returns how many rewards points each user has
     mapping(address => uint) public addressToRewardPoints;
+    //returns if an address is a concert made by Manager
     mapping(address => bool) public isConcert;
-    mapping (uint => address) public ticketIDtoContract;
-    uint ticketId;
+    //matches event ID to address of event contract
+    mapping (uint => address) public eventIDtoContract;
+    //counter for event ID's
+    uint eventId;
 
-    
+    //deploys event contract
+    // parameters are:
+/* 1. baseURI - https address of metadata
+   2. eventTitle - title of event
+   3. eventTime - date and time of event
+   4. generalAdmissionPrice - price of general admission ticket
+   5. VIPprice - price of VIP admission ticket
+   6. generalMaxAdmission - max amount of general admission tickets to be sold
+   7. VIPMaxAdmission - max amount of VIP admission tickets go be sold
+   8. performerPayment - amount in ETH to pay the performer
+   9. royaltyReceiver - address of performer to receive payment
+   10. royaltyFeesInBips - percentage of secondary sales on digital marketplaces. defined in basis points. 1.5% = 150;
+
+*/
     function createEvent (
     string memory baseURI, 
     string memory _eventTitle, 
@@ -24,29 +40,40 @@ contract Manager {
     uint _performerPayment,
     address _royaltyReceiver,
     uint96 _royaltyFeesInBips)  external returns (address){
+        //creates new event
         Concert newConcert = new Concert(baseURI,  _eventTitle, _eventTime, _generalAdmissionPrice, _VIPPrice, _generalMaxAdmission, _VIPMaxAdmission, _performerPayment, _royaltyReceiver,_royaltyFeesInBips);
-        ticketIDtoContract[ticketId] = address(newConcert);
+     //maps event ID to newly created event
+     eventIDtoContract[eventId] = address(newConcert);
+        //marks newly created contract as a contract created by this contract
         isConcert[address(newConcert)] = true;
+        eventId++
+        //returns the address of the new contract
         return address(newConcert);
      }
-
+        
+        //adds rewards points, uses tx.origin because it refers to the customer that bought tickets, and not a smart contract if i used msg.sender
      function addRewardPoints (uint points) public {
         require(isConcert[msg.sender]);
         addressToRewardPoints[tx.origin] += points;
      }
+        //clears all rewards points for user
     function removeRewardPoints () public {
         require(isConcert[msg.sender]);
         delete addressToRewardPoints[tx.origin];
      }
+
+    //GETTERS
+     // getter function that returns the addressToRewards mapping to return the amount of rewards points each person has.
      function getaddressToRewardPoints (address _address) public view returns (uint){
          return addressToRewardPoints[_address];
      }
-
+        //returns isConcert mapping
     function getisConcert (address _address) public view returns (bool) {
         return isConcert[_address];
     }
-    function getticketIDtoContract (uint _uint) public view returns (address) {
-        return ticketIDtoContract[_uint];
+        /returns eventIDtoContract mapping
+    function getEventIDtoContract (uint _uint) public view returns (address) {
+        return eventIDtoContract[_uint];
     }
 
 }
@@ -54,11 +81,12 @@ contract Manager {
 
 
 contract Concert is ERC721Enumerable {
-
+    //instantiate manager Address
     address managerAddress;
+    //creates instance of manager contract to be interacted with for rewards points
     Manager ManagerInstance = Manager(managerAddress);
 
-
+    
     //strings library
     using Strings for uint256;
     //Metadata link
@@ -67,15 +95,18 @@ contract Concert is ERC721Enumerable {
     uint tokenId;
     //Name of event (defined in constructor)
     string eventTitle;
-    //Time/Date of event (defined in constructor)
+    // value to tell if the contract is paused by the owner or not.
     bool public paused;
+//Time/Date of event (defined in constructor)
     string eventTime;
     address royaltyAddress;
     address owner;
     // list of all users that checked in the event
     uint performerPayment;
     
+    //mapping to see if a patron is checked into an event
     mapping(uint => bool) public isCheckedIn;
+    //returns true or false depending on if the address is an employee
     mapping(address => bool) public isEmployee;
 
     //price of general admission (defined in constructor)
@@ -132,36 +163,34 @@ contract Concert is ERC721Enumerable {
     royaltyReceiver = _royaltyReceiver;
     managerAddress = msg.sender;
     }
-
+    //owner can pause / unpause contract with this
     function setPaused(bool _paused) public {
         require(msg.sender == owner, "You are not the owner");
         paused = _paused;
     }
-
+    //allows users to mark their tickets as used or checked in
     function setCheckedIn(uint _tokenId) public {
         require(msg.sender == ownerOf(tokenId));
         isCheckedIn[_tokenId] = true;
     }
 
+    //returns if a token ID was previously checked in
     function getCheckedIn(uint _tokenId) public view returns (bool) {
         return isCheckedIn[_tokenId];
     }
+    
+    //owner can add employees here
     function setIsEmployee(address employee) public {
         require(msg.sender == owner);
         isEmployee[employee] = true;
     }
+    //returns if an address is an employee
     function getIsEmployee(address employee) public view returns (bool) {
         return isEmployee[employee];
     }
     
 
-
-
-    function transferFunds(address payable artist, uint256 amount) payable public {
-        artist.transfer(amount);
-    }
-
-    
+    //functions required by opensea royalty services
     function setRoyaltyInfo(address _receiver, uint96 _royaltyFeesInBips) public {
         require(msg.sender == owner);
         royaltyAddress = _receiver;
@@ -183,11 +212,12 @@ contract Concert is ERC721Enumerable {
     {
         return (royaltyAddress, calculateRoyalty(_salePrice));
     }
-
+    
+    //calculates the royalty fees generated from a sale
     function calculateRoyalty(uint256 _salePrice) view public returns (uint256) {
         return (_salePrice / 10000) * royaltyFeesInBips;
     }
-
+    //NFT stuff
     function supportsInterface(bytes4 interfaceId)
             public
             view
@@ -304,8 +334,11 @@ contract Concert is ERC721Enumerable {
     function withDraw() public view {
         require(msg.sender == owner);
         require(performerIsPaid);
+        address payable _owner = payable(owner);
+        _owner.transfer(address(this).balance);
         
     }
+    
     function payPerformer () public {
         address payable performer = payable(royaltyAddress);
         performer.transfer(performerPayment);
@@ -319,27 +352,3 @@ contract Concert is ERC721Enumerable {
     fallback() external payable {}
 
   }
-
-/*interface IManager {
-   function getResult() external view returns (uint){
-
-   }
-}
-*/
-
-
-//function purchase (uint256 quantity, uint256 admissionType) public payable {
-//        if (true && admissionType==0) {
-//            subTotal = generalPrice * quantity;
-//            userRewards = userRewards.getaddressToRewardPoints[msg.sender];
-//            total = subTotal - userRewards;
-//        }
-//        if (userRewards > 0){
-//            subTotal = subTotal - userRewards;
-//            newRewardTotal = removeRewardPoints(msg.sender);
-//        }
-//        else if (userRewards == 0){
-//            //2 % rewards points
-//            uint pointsToBeAdded = msg.value * bp / 10000;
-//            newsetRewardsPoints[tx.origin]  += rewardsPoints;
-//        }
