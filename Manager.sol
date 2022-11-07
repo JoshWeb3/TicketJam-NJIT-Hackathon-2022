@@ -46,7 +46,7 @@ contract Manager {
      eventIDtoContract[eventId] = address(newConcert);
         //marks newly created contract as a contract created by this contract
         isConcert[address(newConcert)] = true;
-        eventId++
+        eventId++;
         //returns the address of the new contract
         return address(newConcert);
      }
@@ -71,7 +71,7 @@ contract Manager {
     function getisConcert (address _address) public view returns (bool) {
         return isConcert[_address];
     }
-        /returns eventIDtoContract mapping
+        //returns eventIDtoContract mapping
     function getEventIDtoContract (uint _uint) public view returns (address) {
         return eventIDtoContract[_uint];
     }
@@ -331,7 +331,7 @@ contract Concert is ERC721Enumerable {
     * @dev withdraw sends all the ether in the contract
     * to the owner of the contract
         */
-    function withDraw() public view {
+    function withdraw() public  {
         require(msg.sender == owner);
         require(performerIsPaid);
         address payable _owner = payable(owner);
