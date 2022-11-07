@@ -11,9 +11,9 @@ Ticket Jam is a powerful smart contract protocol which facilitates all financial
 <br/>
 <h2>Why use TicketJAM? </h2> <br/>
 <b>For event organizers: </b> Easily set up events that have all financial processes automated. <br/>
-Planners can specify the Title of th event, date/time, and other basic information. Each event may cost a different price, it can be specified how much each ticket will cost and the maximum amout to be sold. It also manages a reward system that incentivises patrons to attend future events.<br/> <br/>
+Planners can specify the Title of the event, date/time, and other essential information. Each event may cost a different price, it can be specified how much each ticket will cost and the maximum amout to be sold. It also manages a reward system that incentivises patrons to attend future events.<br/> <br/>
 
-<b>For patrons: </b> No more fake or fraudulent tickets, easily transferrable, and secondary ticket sales sold on digital asset marketplace will have royalties paid to the performer they are supporting. Using this service will ensure the performer will be paid out first before event planners. **ALSO** <b> ZERO transaction fees since this is computer code and not a company! We take no profits, whereas Ticketmaster can charge up to 78% the price of the ticket! </b> 
+<b>For patrons: </b> No more fake or fraudulent tickets, these tickets are easily transferrable, and secondary ticket sales sold on digital asset marketplaces will have royalties paid to the performer they are supporting. Because it is written programatically to do so, this service will ensure the performer will be paid out first before any event planners. **ALSO** <b> ZERO transaction fees since this is computer code and not a company! We take no profits, whereas Ticketmaster can charge up to 78% the price of the ticket! </b> 
 
 <h2> Technical Description</h2> <br/>
 <b> Manager Contract </b> is the program that organizers can use to deploy self running events. It also stores rewards points for each user. <br/>
@@ -25,7 +25,7 @@ Planners can specify the Title of th event, date/time, and other basic informati
 <b>ticketjam folder is the front end website </b>
 
 <h2> Instructions </h2>
-1. Event Organizer deploys "Manager" Contract
+1. Event Organizer deploys "Manager" Contract <br>
 2. Event Organizer creates event using createEvent() which takes several parameters that customizes each event: <br/>
 Parameters include: Event title, time/date, price of tickets, max amount of tickets allowed to be sold, the payment amount of the performer and the performer's payment address. Also a parameter that includes the royalty % of each secondary sale. <br/>
 3. Patrons buy tickets, they specify whether they want to buy 'General Admission' or 'VIP tickets', and the quantity.<br/>
