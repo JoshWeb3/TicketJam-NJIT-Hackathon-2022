@@ -13,7 +13,7 @@ Ticket Jam is a powerful smart contract protocol which facilitates all financial
 <b>For event organizers: </b> Easily set up events that have all financial processes automated. <br/>
 Planners can specify the Title of th event, date/time, and other basic information. Each event may cost a different price, it can be specified how much each ticket will cost and the maximum amout to be sold. It also manages a reward system that incentivises patrons to attend future events.<br/> <br/>
 
-<b>For patrons: </b> No more fake or fraudulent tickets, easily transferrable, and secondary ticket sales sold on digital asset marketplace will have royalties paid to the performer they are supporting. Using this service will ensure the performer will be paid out first before event planners. 
+<b>For patrons: </b> No more fake or fraudulent tickets, easily transferrable, and secondary ticket sales sold on digital asset marketplace will have royalties paid to the performer they are supporting. Using this service will ensure the performer will be paid out first before event planners. **ALSO** <b> ZERO transaction fees since this is computer code and not a company! We take no profits, whereas Ticketmaster can charge up to 78% the price of the ticket! </b> 
 
 <h2> Technical Description</h2> <br/>
 <b> Manager Contract </b> is the program that organizers can use to deploy self running events. It also stores rewards points for each user. <br/>
