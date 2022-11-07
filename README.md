@@ -6,7 +6,7 @@
 
 
 <h2>Description</h2> <br/>
-Ticket Jam is a powerful smart contract protocol which facilitates all financial processes for paid admission events. It is a system  that organizers can use to fairly and openly plan events. It allows customers to quickly purchase and transfer tickets without fear of fraud. It also ensures fans that their favorite artists will be paid for their performance.
+Ticket Jam is a powerful smart contract protocol which facilitates all financial processes for paid admission events. It is a system  that organizers can use to fairly and openly plan events. It allows customers to quickly purchase and transfer tickets without fear of fraud and eliminates the high fees ticket companies charge. It also ensures fans that their favorite artists will be paid for their performance.
 
 <br/>
 <h2>Why use TicketJAM? </h2> <br/>
